@@ -1,15 +1,15 @@
 ﻿@inherits LayoutComponentBase
 @namespace PizzaApp
 
-<PageTitle>PizzaApp</PageTitle>
+<PageTitle>InvoiceApp</PageTitle>
 
 <CascadingValue Value="@Snackbar">
     <MudLayout>
         <MudAppBar Elevation="8">
             <MudToggleIconButton @bind-Toggled="MenuOpened" Icon="@Icons.Material.Filled.Menu" ToggledIcon="@Icons.Material.Filled.Close" Color="Color.Inherit" ToggledColor="Color.Inherit" Edge="Edge.Start" />
-            <MudText Typo="Typo.h5" Class="ml-3">Pizza Place</MudText>
+            <MudText Typo="Typo.h5" Class="ml-3">Invoice App</MudText>
             <MudSpacer />
-            <MudAvatar Color="Color.Secondary">K</MudAvatar>
+            <MudAvatar Color="Color.Secondary">J</MudAvatar>
         </MudAppBar>
         <MudDrawer @bind-Open="MenuOpened" ClipMode="DrawerClipMode.Always" Elevation="2">
             <NavMenu />
