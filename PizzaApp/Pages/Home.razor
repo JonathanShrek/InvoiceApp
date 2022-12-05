@@ -1,10 +1,8 @@
 ﻿@page "/"
 @page "/home"
-@page "/login"
+@attribute [Authorize]
 
-<PizzaApp.Pages.Account.Login />
-
-@*<MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
+<MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
     <MudCarouselItem Transition="Transition.Slide" Color="@Color.Primary">
         <div class="d-flex" style="height:100%">
             <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
@@ -49,4 +47,13 @@
                        Title="Create an Account" />
         </MudItem>
     </MudGrid>
-</MudContainer>*@
+</MudContainer>
+
+<AuthorizeView Roles="Spider Man">
+    <Authorized>
+        <span>You're authorized as @context.User.Identity.Name</span>
+    </Authorized>
+    <NotAuthorized>
+        <span>You're not authorized.</span>
+    </NotAuthorized>
+</AuthorizeView>

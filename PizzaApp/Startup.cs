@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MudBlazor;
 using MudBlazor.Services;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
