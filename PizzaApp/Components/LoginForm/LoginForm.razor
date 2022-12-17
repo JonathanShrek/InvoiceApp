@@ -1,4 +1,8 @@
-﻿@namespace PizzaApp.Components
+﻿@*@inject HttpClient Http*@
+@inject AuthenticationStateProvider AuthStateProvider
+@inject ILocalStorageService LocalStorage
+
+@namespace PizzaApp.Components
 
 <MudGrid>
     @if (IsLoading)
@@ -10,6 +14,18 @@
     else
     {
         <MudItem xs="12">
+            <EditForm Model="user" OnSubmit="HandleLogin">
+                <label for="username">Name</label>
+                <InputText id="username" @bind-Value="user.Username" />
+                <label for="password">Password</label>
+                <InputText id="password" @bind-Value="user.Password" typeof="password" />
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="my-3 flex-md-grow-0 flex-grow-1">
+                    <MudText>Login</MudText>
+                </MudButton>
+            </EditForm>
+        </MudItem>
+
+@*        <MudItem xs="12">
             <EditForm OnValidSubmit="Login" Model="Model">
                 <DataAnnotationsValidator />
 
@@ -56,5 +72,18 @@
                 </MudGrid>
             </EditForm>
         </MudItem>
-    }
+*@    }
 </MudGrid>
+
+@code {
+    UserLoginDto user = new UserLoginDto();
+
+    async Task HandleLogin()
+    {
+        //var result = await _httpclient.PostAsJsonAsync("api/auth", user);
+        //var token = await result.Content.ReadAsStringAsync();
+        //Console.WriteLine(token);
+        //await LocalStorage.SetItemAsync("token", token);
+        //await AuthStateProvider.GetAuthenticationStateAsync();
+    }
+}
