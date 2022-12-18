@@ -18,12 +18,13 @@ namespace PizzaApp.Pages.Account
         //[Inject] IDbContextFactory<PizzaContext> PizzaContext { get; set; }
 
         CreateUserModel NewUser { get; set; } = new();
-        User Creds { get; set; } = new();
+        bool AccountCreated { get; set; }
         bool BtnCreateAccount { get; set; }
         bool IsLoading { get; set; } = true;
         bool ShowPassword { get; set; } = true;
         InputType PasswordInput { get; set; } = InputType.Password;
         string PasswordInputIcon { get; set; } = Icons.Material.Filled.VisibilityOff;
+        public bool DialogVisible { get; set; }
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -34,12 +35,6 @@ namespace PizzaApp.Pages.Account
             }
 
             base.OnAfterRender(firstRender);
-        }
-
-        private void SetProfilePicture(string profilePic)
-        {
-            NewUser.ProfilePicture = profilePic;
-            StateHasChanged();
         }
 
         private void TogglePasswordVisibility()
@@ -100,16 +95,13 @@ namespace PizzaApp.Pages.Account
             //}
 
             var result = await Http.PostAsJsonAsync("api/auth/register", NewUser);
-            var creds = await result.Content.ReadFromJsonAsync<User>();
+            var response = await result.Content.ReadAsStringAsync();
 
-            if (creds != null) 
+            if (response == "Success")
             {
-                Creds = creds;
+                AccountCreated = true;
+                DialogVisible = true;
             }
-
-            //await LocalStorage.SetItemAsync("token", token);
-            //await AuthStateProvider.GetAuthenticationStateAsync();
-            //Navigation.NavigateTo("/");
 
             await Task.Delay(1000);
 

@@ -21,9 +21,6 @@
                             <MudItem xs="12" sm="12" md="6" Class="d-flex align-self-center justify-md-start justify-center">
                                 <h1>Create an Account</h1>
                             </MudItem>
-                            <MudItem xs="12" sm="12" md="6">
-                                <UploadProfilePicture Label="Profile Picture" ReturnProfilePicture="SetProfilePicture" />
-                            </MudItem>
                         </MudGrid>
 
                         <MudGrid>
@@ -38,15 +35,6 @@
                         <MudGrid>
                             <MudItem xs="12">
                                 <MudTextField Label="Username" @bind-Value="NewUser.Username" For="@(() => NewUser.Username)" InputMode="InputMode.text" InputType="InputType.Text" Immediate="true" />
-                            </MudItem>
-                        </MudGrid>
-
-                        <MudGrid>
-                            <MudItem xs="12" sm="12" md="6">
-                                <MudTextField InputType="InputType.Telephone" InputMode="InputMode.tel" Label="Phone Number" @bind-Value="NewUser.PhoneNumber" For="@(() => NewUser.PhoneNumber)" Immediate="true" Mask="@(new PatternMask("000-000-0000"))" autocomplete=@("mud-disabled-"+Guid.NewGuid()) />
-                            </MudItem>
-                            <MudItem xs="12" sm="12" md="6">
-                                <MudDatePicker Label="Date of Birth" @bind-Date="NewUser.DateOfBirth" For="@(() => NewUser.DateOfBirth)" OpenTo="OpenTo.Year" Rounded="true" Elevation="12" />
                             </MudItem>
                         </MudGrid>
 
@@ -118,16 +106,33 @@
                             </MudItem>
                         </MudGrid>
 
-                        @if (Creds.Username != "")
+                        @if (AccountCreated)
                         {
-                            <MudText>
-                                @Creds.Username
-                            </MudText>
+                            <MudDialog @bind-IsVisible="DialogVisible" Options="dialogOptions">
+                                <TitleContent>
+                                    <MudText Typo="Typo.h6">
+                                        Success
+                                    </MudText>
+                                </TitleContent>
+                                <DialogContent>
+                                    <MudText>
+                                        Account created successfully.
+                                    </MudText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Submit" Class="px-10">Close</MudButton>
+                                </DialogActions>
+                            </MudDialog>
                         }
                     </EditForm>
                 </MudItem>
             }
         </MudGrid>
-
     </MudPaper>
 </MudContainer>
+
+@code {
+    void Submit() => DialogVisible = false;
+
+    private DialogOptions dialogOptions = new() { FullWidth = true };
+}

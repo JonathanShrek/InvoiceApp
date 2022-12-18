@@ -53,16 +53,6 @@ namespace PizzaApp.Models
             }
         }
 
-        public string ProfilePicture { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Phone number is required")]
-        [BirthdayValidation]
-        public DateTime? DateOfBirth { get; set; }
-
-        [Required(ErrorMessage = "Phone number is required")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        public string PhoneNumber { get; set; } = string.Empty;
-
         public bool PasswordInRange { get; set; }
 
         public bool PasswordLowerCase { get; set; }
