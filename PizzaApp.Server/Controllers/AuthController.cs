@@ -23,7 +23,7 @@ namespace PizzaApp.Server.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(LoginModel request)
+        public async Task<ActionResult<User>> Register(CreateUserModel request)
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http.Json;
+using MudBlazor.Services;
+using PizzaApp.Shared.Models;
 
 namespace PizzaApp.Pages.Account
 {
@@ -15,6 +18,7 @@ namespace PizzaApp.Pages.Account
         //[Inject] IDbContextFactory<PizzaContext> PizzaContext { get; set; }
 
         CreateUserModel NewUser { get; set; } = new();
+        User Creds { get; set; } = new();
         bool BtnCreateAccount { get; set; }
         bool IsLoading { get; set; } = true;
         bool ShowPassword { get; set; } = true;
@@ -94,6 +98,18 @@ namespace PizzaApp.Pages.Account
             //        // error
             //    }
             //}
+
+            var result = await Http.PostAsJsonAsync("api/auth/register", NewUser);
+            var creds = await result.Content.ReadFromJsonAsync<User>();
+
+            if (creds != null) 
+            {
+                Creds = creds;
+            }
+
+            //await LocalStorage.SetItemAsync("token", token);
+            //await AuthStateProvider.GetAuthenticationStateAsync();
+            //Navigation.NavigateTo("/");
 
             await Task.Delay(1000);
 

@@ -20,9 +20,12 @@ namespace PizzaApp.Models
         [StringLength(25, ErrorMessage = "Name length can't be more than 25.")]
         public string LastName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Email is not valid")]
-        public string Email { get; set; } = string.Empty;
+        //[Required(ErrorMessage = "Email is required")]
+        //[EmailAddress(ErrorMessage = "Email is not valid")]
+        //public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Username is required")]
+        public string Username { get; set; } = string.Empty;
 
         private string password = string.Empty;
         [Required(ErrorMessage = "Password is required")]
