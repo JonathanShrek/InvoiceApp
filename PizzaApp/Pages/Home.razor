@@ -1,59 +1,23 @@
 ﻿@page "/"
 @page "/home"
 
-<MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
-    <MudCarouselItem Transition="Transition.Slide" Color="@Color.Primary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
-        </div>
-    </MudCarouselItem>
-    <MudCarouselItem Transition="Transition.Slide" Color="@Color.Secondary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
-        </div>
-    </MudCarouselItem>
-    <MudCarouselItem Transition="Transition.Slide">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
-        </div>
-    </MudCarouselItem>
-</MudCarousel>
-
 <MudContainer MaxWidth="MaxWidth.False">
     <MudGrid Class="py-5">
-        <MudItem md="4" sm="12" xs="12">
-            <MediaCard Height="200"
-                       Image="_content/PizzaApp/images/pizza_one.jpg"
-                       Message="Test"
-                       RedirectText="Order Now"
-                       RedirectURL="/about"
-                       Title="Order Today" />
+        <MudItem md="6" sm="12" xs="12">
+            <MediaCard Height="400"
+                       Image="_content/PizzaApp/images/schedule_image.jpg"
+                       Message="View or edit your schedule"
+                       RedirectText="View Schedule"
+                       RedirectURL="/schedule"
+                       Title="Schedule" />
         </MudItem>
-        <MudItem md="4" sm="12" xs="12">
-            <MediaCard Height="200"
-                       Image="_content/PizzaApp/images/pizza_two.jpg"
-                       Message="Test"
-                       RedirectText="About Us"
-                       RedirectURL="/about"
-                       Title="About Our Company" />
-        </MudItem>
-        <MudItem md="4" sm="12" xs="12">
-            <MediaCard Height="200"
-                       Image="_content/PizzaApp/images/pizza_three.jpg"
-                       Message="Create an account today!"
-                       RedirectText="Create Account"
-                       RedirectURL="/account/create"
-                       Title="Create an Account" />
+        <MudItem md="6" sm="12" xs="12">
+            <MediaCard Height="400"
+                       Image="_content/PizzaApp/images/invoice_image.jpg"
+                       Message="Create a new invoice"
+                       RedirectText="Create Invoice"
+                       RedirectURL="/invoice/create"
+                       Title="Invoice" />
         </MudItem>
     </MudGrid>
 </MudContainer>
-
-@*<AuthorizeView Roles="Spider Man">
-    <Authorized>
-        <span>You're authorized as @context.User.Identity.Name</span>
-    </Authorized>
-    <NotAuthorized>
-        <span>You're not authorized.</span>
-    </NotAuthorized>
-</AuthorizeView>
-*@

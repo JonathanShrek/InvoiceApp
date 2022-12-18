@@ -2,13 +2,13 @@
 
 <MudNavMenu>
     <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-    <MudNavLink Href="/about" Match="NavLinkMatch.Prefix">About</MudNavLink>
+    <MudNavLink Href="/schedule" Match="NavLinkMatch.All">Schedule</MudNavLink>
+    <MudNavGroup Title="Invoice" Expanded="true">
+        <MudNavLink Href="/invoice/view" Match="NavLinkMatch.All">View Invoices</MudNavLink>
+        <MudNavLink Href="/invoice/create" Match="NavLinkMatch.All">Create Invoice</MudNavLink>
+    </MudNavGroup>
     <MudNavGroup Title="Account" Expanded="true">
         <MudNavLink Href="/account" Match="NavLinkMatch.All">Settings</MudNavLink>
         <MudNavLink Href="/account/create" Match="NavLinkMatch.All">Create Account</MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="Company" Expanded="true">
-        <MudNavLink Href="/company" Match="NavLinkMatch.All">Settings</MudNavLink>
-        <MudNavLink Href="/company/edit" Match="NavLinkMatch.All">Edit Company Settings</MudNavLink>
     </MudNavGroup>
 </MudNavMenu>
