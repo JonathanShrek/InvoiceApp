@@ -1,29 +1,38 @@
 ﻿@inherits LayoutComponentBase
 @namespace PizzaApp
+@using PizzaApp.Components.NavigationMenu
+@using PizzaApp.Pages.Account
 
 <PageTitle>InvoiceApp</PageTitle>
 
-<CascadingValue Value="@Snackbar">
-    <MudLayout>
-        <MudAppBar Elevation="8">
-            <MudToggleIconButton @bind-Toggled="MenuOpened" Icon="@Icons.Material.Filled.Menu" ToggledIcon="@Icons.Material.Filled.Close" Color="Color.Inherit" ToggledColor="Color.Inherit" Edge="Edge.Start" />
-            <MudText Typo="Typo.h5" Class="ml-3">Invoice App</MudText>
-            <MudSpacer />
-            <MudAvatar Color="Color.Secondary">J</MudAvatar>
-        </MudAppBar>
-        <MudDrawer @bind-Open="MenuOpened" ClipMode="DrawerClipMode.Always" Elevation="2">
-            <NavMenu />
-        </MudDrawer>
-        <MudMainContent>
-            <div class="main_container pb-3">
-                <div class="content">
-                    @Body
-                </div>
-            </div>
-            <Footer />
-        </MudMainContent>
-    </MudLayout>
-</CascadingValue>
+<AuthorizeView>
+    <Authorized>
+        <CascadingValue Value="@Snackbar">
+            <MudLayout>
+                <MudAppBar Elevation="8">
+                    <MudToggleIconButton @bind-Toggled="MenuOpened" Icon="@Icons.Material.Filled.Menu" ToggledIcon="@Icons.Material.Filled.Close" Color="Color.Inherit" ToggledColor="Color.Inherit" Edge="Edge.Start" />
+                    <MudText Typo="Typo.h5" Class="ml-3">Invoice App</MudText>
+                    <MudSpacer />
+                    <LogoutButton />
+                </MudAppBar>
+                <MudDrawer @bind-Open="MenuOpened" ClipMode="DrawerClipMode.Always" Elevation="2">
+                    <NavMenu />
+                </MudDrawer>
+                <MudMainContent>
+                    <div class="main_container pb-3">
+                        <div class="content">
+                            @Body
+                        </div>
+                    </div>
+                    <Footer />
+                </MudMainContent>
+            </MudLayout>
+        </CascadingValue>
+    </Authorized>
+    <NotAuthorized>
+        <Login />
+    </NotAuthorized>
+</AuthorizeView>
 
 <MudThemeProvider />
 <MudDialogProvider />

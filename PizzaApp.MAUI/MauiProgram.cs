@@ -21,7 +21,7 @@ namespace PizzaApp.MAUI
 #endif
 
 			// add DI from PizzaApp
-			builder.Services.TryAddPizzaAppRCL();
+			//builder.Services.TryAddPizzaAppRCL();
 
 			return builder.Build();
         }

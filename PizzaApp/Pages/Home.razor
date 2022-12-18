@@ -1,6 +1,5 @@
 ﻿@page "/"
 @page "/home"
-@attribute [Authorize]
 
 <MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
     <MudCarouselItem Transition="Transition.Slide" Color="@Color.Primary">
@@ -49,7 +48,7 @@
     </MudGrid>
 </MudContainer>
 
-<AuthorizeView Roles="Spider Man">
+@*<AuthorizeView Roles="Spider Man">
     <Authorized>
         <span>You're authorized as @context.User.Identity.Name</span>
     </Authorized>
@@ -57,3 +56,4 @@
         <span>You're not authorized.</span>
     </NotAuthorized>
 </AuthorizeView>
+*@

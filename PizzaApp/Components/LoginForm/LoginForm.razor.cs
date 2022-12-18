@@ -4,6 +4,7 @@ using PizzaApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace PizzaApp.Components
             base.OnAfterRender(firstRender);
         }
 
-        public async void Login()
+        public async Task Login()
         {
             BtnLogin = true;
 
@@ -65,6 +66,14 @@ namespace PizzaApp.Components
 
             //    // todo - login attempts
             //}
+
+            var result = await Http.PostAsJsonAsync("api/auth", Model);
+            var token = await result.Content.ReadAsStringAsync();
+
+            await LocalStorage.SetItemAsync("token", token);
+            await AuthStateProvider.GetAuthenticationStateAsync();
+
+            Navigation.NavigateTo("/");
 
             await Task.Delay(1000);
 
