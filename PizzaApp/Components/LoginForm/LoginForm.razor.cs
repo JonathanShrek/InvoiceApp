@@ -67,7 +67,7 @@ namespace PizzaApp.Components
             //    // todo - login attempts
             //}
 
-            var result = await Http.PostAsJsonAsync("api/auth", Model);
+            var result = await Http.PostAsJsonAsync("api/auth/login", Model);
             var token = await result.Content.ReadAsStringAsync();
 
             await LocalStorage.SetItemAsync("token", token);
