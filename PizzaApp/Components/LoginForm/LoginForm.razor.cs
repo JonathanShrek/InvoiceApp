@@ -19,6 +19,7 @@ namespace PizzaApp.Components
         [Inject] NavigationManager Navigation { get; set; }
 
         bool BtnLogin { get; set; }
+        bool LoginError { get; set; }
         bool IsLoading { get; set; } = true;
         LoginModel Model { get; set; } = new();
         bool ShowPassword { get; set; } = true;
@@ -70,10 +71,17 @@ namespace PizzaApp.Components
             var result = await Http.PostAsJsonAsync("api/auth/login", Model);
             var token = await result.Content.ReadAsStringAsync();
 
-            await LocalStorage.SetItemAsync("token", token);
-            await AuthStateProvider.GetAuthenticationStateAsync();
+            if (token == "User not found." || token == "Wrong password.")
+            {
+                LoginError = true;
+            }
+            else
+            {
+                await LocalStorage.SetItemAsync("token", token);
+                await AuthStateProvider.GetAuthenticationStateAsync();
 
-            Navigation.NavigateTo("/");
+                Navigation.NavigateTo("/");
+            }
 
             await Task.Delay(1000);
 
